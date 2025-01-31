@@ -38,7 +38,9 @@ async def echo(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         await update.message.reply_text(resp)
     else:
         logger.info(f"Going to reply to user {update.effective_user}")
-        await update.message.reply_text(update.message.text)
+        ans = f"""Hi {update.effective_user.name}, How can I assist you today!\n\n/start - To start chatting with ollama\n/help - To get help with all the commands\n/end - To end the session with ollama"""
+        # await update.message.reply_text(update.message.text)
+        await update.message.reply_text(ans)
 
 
 def ollama_model(queries):
@@ -57,7 +59,7 @@ async def query(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     global querying
     querying = True
     user = update.effective_user
-    await update.message.reply_html(f"Hi {user.mention_html()}, How can I assist you today?")
+    await update.message.reply_html(f"Hi {user.mention_html()}, I am llama3.2 the LLM Model, you can ask me anything and I will try to answer your questions the best way I can.")
 
 
 async def end(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
